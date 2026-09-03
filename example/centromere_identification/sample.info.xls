@@ -1,0 +1,2 @@
+sample1	/path/to/sample1/ChIP_R1.fq.gz	/path/to/sample1/ChIP_R2.fq.gz	sample1_genome.fa	/path/to/sample1/Input_R1.fq.gz	/path/to/sample1/Input_R2.fq.gz
+sample2	/path/to/sample2/ChIP_R1.fq.gz	/path/to/sample2/ChIP_R2.fq.gz	sample2_genome.fa	/path/to/sample2/Input_R1.fq.gz	/path/to/sample2/Input_R2.fq.gz
