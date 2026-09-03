@@ -1,0 +1,32 @@
+input:
+  sample_info: "example/centromere_identification/sample.info.xls"  # Sample information file. (SampleName\tChIP-ProductRead1\tChIP-ProductRead2\tReferenceGenome\tChIP-InputRead1\tChIP-InputRead2)
+
+output:
+  dir: "/path/to/out_dir"  # Output directory.
+
+global_params:
+  num_threads: 10  # The number of threads for each sample.
+  num_processing: 5  # The number of processing. It means how many samples are analyzed in parallel at a time.
+
+bowtie2_params:
+  build_index: False  # If True, build index of bowtie2 for reference sequence.
+  large_genome: False  # If build_index is True and genome size is greater than 4 billion nucleotides, set this param True.
+
+macs2_callpeak_params:
+  broad: True  # If set, MACS2 will try to call broad peaks using the --broad-cutoff setting.
+
+centromere_identification_params:
+  min_fold_enrichment: 3  # Minimal fold enrichment.
+  min_log10_q: 2.0  # Minimal -log10(q value).
+  window_size: 100000  # Divide the genome into window intervals of the specified size.
+  window_step: 10000  # How many base pairs to step before creating a new window.
+  min_coverage: 0.1  # The minimum coverage of peaks in each window.
+  min_peak_distance: 50000  # The minimum distance between peaks.
+  min_peak_len: 15000  # The minimum length of merged peaks.
+
+# Depending on the situation, the following part can be deleted.
+TR_heatmap_params:
+  Snakefile: "/path/to/StainedGlass/workflow/Snakefile"  # Snakefile path of StainedGlass.
+  config: "/path/to/StainedGlass/config/config.yaml"  # Config file path of StainedGlass.
+  window_size: 10000  # Perform the alignment within the specified window size.
+  colormap: "YlOrRd"  # Colormap of sequence identity heatmap.

@@ -1,0 +1,41 @@
+input:
+  sample_info: "example/variant_calling/sample.info.xls"  # Sample information file. (SampleName\tRead1Path\tRead2Path)
+  genome_fasta: "/your/path/to/genome.fasta"  # Reference genome fasta file.
+  genome_gff: "/your/path/to/genome.gff3"  # Reference genome gff3 file. (If you need to build the annovar database, please specify the gff file and add the "--build-database" option.)
+
+output:
+  dir: "/your/path/to/out_dir"  # Output directory.
+
+global_params:
+  num_threads: 10  # The number of threads for each sample.
+  num_processing: 5  # The number of processing. It means how many samples are analyzed in parallel at a time.
+  java_Xmx: '20g'  # The maximum heap memory size that can be utilized by the JVM.
+
+filter_params:
+  min_map_q: 30  # Minimum mapping quality value of reads.
+  filter_expression: "QD < 2.0 || MQ < 40.0 || FS > 60.0 || SOR > 3.0"  # The filtering expressions passed to the gatk VariantFiltration command.
+  min_allele: 2  # Minimum number of SNP alleles.
+  max_allele: 2  # Maximum number of SNP alleles.
+  min_maf: 0.05  # Minimum minor allele frequency of SNP.
+  max_missing: 1.0  # Exclude sites on the basis of the proportion of missing data (defined to be between 0 and 1, where 0 allows sites that are completely missing and 1 indicates no missing  data  allowed).
+  min_meanDP: 3  # Minimum mean depth of SNP.
+  LD_filter:  # plink LD prune
+    window_size: 50
+    step_size: 5
+    r2: 0.2
+
+snp_distribution_figure_params:
+  window_size: 100000  # The window size for counting the number of SNPs.
+  min_count: 100  # The minimum number of SNPs shown by the color bars in the density graph.
+  max_count: 1000  # The maximum number of SNPs shown by the color bars in the density graph.
+  step: 100  # The step size of the color bars in the density graph.
+  color_map: "RdYlGn_r"  # Color map.
+  font_size: 14  # Font size.
+  figure_size: "10.0x8.0"  # Figure size.
+
+annovar_params:
+  neargene: 2000  # Define upstream and downstream distance between SNPs and genes.
+
+admixture_params:
+  rename_chr: True  # [recommend] Rename chromosome to avoid errors reported by the plink and admixture programs.
+  K: 10  # The number of populations.
