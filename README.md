@@ -41,7 +41,7 @@ bioinformatics tools and analysis processes.**
 ## Install
 ```shell
 # python >= 3.8
-pip install bws --upgrade -i http://192.168.31.13:8080 --trusted-host 192.168.31.13
+pip install bio_workflow_suite --upgrade -i http://192.168.31.13:8080 --trusted-host 192.168.31.13
 ```
 
 ## User guide
@@ -282,8 +282,7 @@ TR_analyser cent_landscape \
 ```
 ![image](example/centromere_identification/HOR.png)
 - **The gray shading indicates the centromere region and the red dotted line indicates the gap position.**
-- **For `-i` option to show TR identity, [the analysis script is as shown previously.](#link3)
-For show whole chromosome, by set `-e` option value very large (greater than maximum chromosome).**
+- **For show whole chromosome, by set `-e` option value very large (greater than maximum chromosome).**
 ```shell
 TR_analyser cent_landscape \
   06.tracks/sampl1/ChIP.bw \
