@@ -1,38 +1,45 @@
 <a id="link1"></a>
 # BioWorkflowSuite (BWS) : Bioinformatic workflow suite.
 
-- [Introduction](#introduction)
-- [Install](#install)
-- [User guide](#user-guide)
-  - [1. LncRNAs and target genes prediction](#1-lncrnas-and-target-genes-prediction)
-    - [**1.1 Dependency software**](#11-dependency-software)
-    - [**1.2 Get started**](#12-get-started)
-    - [**1.3 How it works**](#13-how-it-works)
-    - [**1.4 Output directory structure**](#14-output-directory-structure)
-    - [**1.5 Major result files**](#15-major-result-files)
-    - [**1.6 Example result figure**](#16-example-result-figure)
-  - [ 2. Monocentric centromere identification based on ChIP-seq](#-2-monocentric-centromere-identification-based-on-chip-seq)
-    - [**2.1 Dependency software**](#21-dependency-software)
-    - [**2.2 Get started**](#22-get-started)
-    - [**2.3 Major results**](#23-major-results)
-    - [**2.4 Example result figure**](#24-example-result-figure)
-  - [3. Centromere landscape visualization](#3-centromere-landscape-visualization)
-    - [**3.1 Dependency software**](#31-dependency-software)
-    - [**3.2 Get started**](#32-get-started)
-      - [**3.2.1. Identification and clustering of tandem repeat sequences**](#321-identification-and-clustering-of-tandem-repeat-sequences)
-      - [**3.2.2. Generate reads tracks**](#322-generate-reads-tracks)
-      - [**3.2.3. Centromere landscape visualization**](#323-centromere-landscape-visualization)
-  - [4. Genetic structure analysis](#4-genetic-structure-analysis)
-    - [**4.1 Dependency software**](#41-dependency-software)
-    - [**4.2 Get started**](#42-get-started)
-    - [**4.3 Example result figure**](#43-example-result-figure)
-  - [5. Haplotype genome allele analysis](#5-haplotype-genome-allele-analysis)
-    - [**5.1 Dependency software**](#51-dependency-software)
-    - [**5.2 Get started**](#52-get-started)
-      - [**5.2.1 Allele identification**](#521-allele-identification)
-      - [**5.2.2 Allele expression pattern clustering (AEPC)**](#522-allele-expression-pattern-clustering-aepc)
-      - [**5.2.3 Allele-specific expression (ASE) analysis**](#523-allele-specific-expression-ase-analysis)
-      - [**5.2.4 Allele-specific TE insertion**](#524-allele-specific-te-insertion)
+<img src="logo.png" align="right" width="30%">
+
+- [BioWorkflowSuite (BWS) : Bioinformatic workflow suite.](#bioworkflowsuite-bws--bioinformatic-workflow-suite)
+  - [Introduction](#introduction)
+  - [Install](#install)
+  - [User guide](#user-guide)
+    - [1. LncRNAs and target genes prediction](#1-lncrnas-and-target-genes-prediction)
+      - [**1.1 Dependency software**](#11-dependency-software)
+      - [**1.2 Get started**](#12-get-started)
+      - [**1.3 How it works**](#13-how-it-works)
+      - [**1.4 Output directory structure**](#14-output-directory-structure)
+      - [**1.5 Major result files**](#15-major-result-files)
+      - [**1.6 Example result figure**](#16-example-result-figure)
+    - [ 2. Monocentric centromere identification based on ChIP-seq](#-2-monocentric-centromere-identification-based-on-chip-seq)
+      - [**2.1 Dependency software**](#21-dependency-software)
+      - [**2.2 Get started**](#22-get-started)
+      - [**2.3 Major results**](#23-major-results)
+      - [**2.4 Example result figure**](#24-example-result-figure)
+    - [3. Centromere landscape visualization](#3-centromere-landscape-visualization)
+      - [**3.1 Dependency software**](#31-dependency-software)
+      - [**3.2 Get started**](#32-get-started)
+        - [**3.2.1. Identification and clustering of tandem repeat sequences**](#321-identification-and-clustering-of-tandem-repeat-sequences)
+        - [**3.2.2. Generate reads tracks**](#322-generate-reads-tracks)
+        - [**3.2.3. Centromere landscape visualization**](#323-centromere-landscape-visualization)
+    - [4. Genetic structure analysis](#4-genetic-structure-analysis)
+      - [**4.1 Dependency software**](#41-dependency-software)
+      - [**4.2 Get started**](#42-get-started)
+      - [**4.3 Example result figure**](#43-example-result-figure)
+    - [5. Haplotype genome allele analysis](#5-haplotype-genome-allele-analysis)
+      - [**5.1 Dependency software**](#51-dependency-software)
+      - [**5.2 Get started**](#52-get-started)
+        - [**5.2.1 Allele identification**](#521-allele-identification)
+        - [**5.2.2 Allele expression pattern clustering (AEPC)**](#522-allele-expression-pattern-clustering-aepc)
+        - [**5.2.3 Allele-specific expression (ASE) analysis**](#523-allele-specific-expression-ase-analysis)
+        - [**5.2.4 Allele-specific TE insertion**](#524-allele-specific-te-insertion)
+    - [6. Parental lineage tracing based on SNP](#6-parental-lineage-tracing-based-on-snp)
+        - [Step1: SNP identification](#step1-snp-identification)
+        - [Step2: extract snp genotype](#step2-extract-snp-genotype)
+        - [Step3: tracing of parental haplotypes in progeny](#step3-tracing-of-parental-haplotypes-in-progeny)
 
 ## Introduction
 **It is a bioinformatics integrated tool platform, aiming to uniformly manage, schedule and execute various 
@@ -258,6 +265,21 @@ bamCoverage \
   -b 02.mapping/sample1/HiFi.sort.filtered.bam \
   -o 06.tracks/sample1/HiFi.bw
 ```
+**Steps 3 and 4 can be executed using the following pipeline.**
+```shell
+T2T_helper collapse_detector \
+  -k 21 \
+  -x map-pb \
+  -q 20 \
+  -e 100 \
+  -l 10000 \
+  -c 0.95 \
+  -sp \
+  -t 60 \
+  -o 02.mapping/sample1 \
+  sample1.genome.fa \
+  /your/path/to/HiFi.fastq.gz
+```
 ##### **3.2.3. Centromere landscape visualization**
 ```shell
 # step5: show reads and HOR tracks
@@ -466,5 +488,103 @@ repeat_000322  DNA/TcMar/MITE  Posim.A01G003300.3.v1.0  exon
 - column 2: TE class
 - column 3: gene id
 - column 4: gene structure
+
+### 6. Parental lineage tracing based on SNP
+##### Step1: SNP identification
+```shell
+T2T_helper syri_pipeline -a minimap2 -t 60 -o syri_out ref.genome.fa pat.hap1.fa
+T2T_helper syri_pipeline -a minimap2 -t 60 -o syri_out ref.genome.fa pat.hap2.fa
+
+T2T_helper syri_pipeline -a minimap2 -t 60 -o syri_out ref.genome.fa mat.hap2.fa
+T2T_helper syri_pipeline -a minimap2 -t 60 -o syri_out ref.genome.fa mat.hap2.fa
+
+T2T_helper syri_pipeline -a minimap2 -t 60 -o syri_out ref.genome.fa progeny.hap1.fa
+T2T_helper syri_pipeline -a minimap2 -t 60 -o syri_out ref.genome.fa progeny.hap2.fa
+```
+
+##### Step2: extract snp genotype
+```shell
+T2T_helper extract_snp \
+  -r 0 
+  -s <(echo -e "pat_hap1\npat_hap2\nmat_hap1\nmat_hap2\nprogeny_hap1\nprogeny_hap2") \
+  -o syri.hap.GT.xls \
+  syri_out/ref.genome_vs_pat.hap1/syri.out \
+  syri_out/ref.genome_vs_pat.hap2/syri.out \
+  syri_out/ref.genome_vs_mat.hap1/syri.out \
+  syri_out/ref.genome_vs_mat.hap2/syri.out \
+  syri_out/ref.genome_vs_progeny.hap1/syri.out \
+  syri_out/ref.genome_vs_progeny.hap2/syri.out
+```
+```text
+# syri.hap.GT.xls
+ID             Chromosome  Position  Ref  pat_hap1  pat_hap2  mat_hap1  mat_hap2  progeny_hap1  progeny_hap2
+Chr01_451229   Chr01       451229    T    T         C         T         C         T             C
+Chr01_488540   Chr01       488540    C    C         A         G         A         G             A
+Chr01_505270   Chr01       505270    T    T         C         G         C         G             C
+Chr01_576437   Chr01       576437    A    A         C         A         C         A             C
+Chr01_576601   Chr01       576601    C    C         T         T         T         T             T
+Chr01_581807   Chr01       581807    A    A         G         A         G         A             G
+Chr01_659234   Chr01       659234    C    C         A         A         A         A             A
+Chr01_863123   Chr01       863123    C    C         A         C         A         C             A
+Chr01_1075003  Chr01       1075003   G    G         A         A         A         A             A
+```
+
+##### Step3: tracing of parental haplotypes in progeny
+```shell
+T2T_helper haplotype_parental_tracing \
+  -o progeny_lineage_tracing \
+  -pat 5,6 \
+  -mat 7,8 \
+  -progeny 9,10 \
+  syri.hap.GT.xls
+```
+**This step will generate two files:**
+- `progeny_lineage_tracing/support_locus_counts.tsv`: records the number of SNP loci on the homologous chromosomes of the progeny that support their origin from the paternal or maternal parent (pat/mat).
+```text
+Chromosome  progeny_hap1  progeny_hap2  Total
+Chr01       114/0         0/62          95731
+Chr02       37/0          0/67          57699
+Chr03       54/0          0/53          44570
+Chr04       63/0          8/49          45394
+Chr05       10/0          0/34          53974
+Chr06       15/0          0/20          58685
+Chr07       28/0          0/16          29795
+Chr08       14/0          0/6           50187
+Chr09       29/0          0/36          34818
+Chr10       21/0          0/33          48202
+Chr11       26/0          0/8           30151
+Chr12       19/0          0/5           28555
+Chr13       8/0           0/7           33111
+Chr14       35/0          0/36          38204
+Chr15       25/0          0/44          30325
+Chr16       47/0          0/67          27414
+Chr17       38/0          0/41          27827
+Chr18       0/0           0/5           30064
+Chr19       23/0          0/8           21187
+Total       606/0         8/597         785893
+```
+- `progeny_lineage_tracing/progeny_haplotype_tracing.tsv`: based on the results of `progeny_lineage_tracing/support_locus_counts.tsv`, infer the parental origin of the homologous chromosomes of the progeny.
+```text
+Chromosome  progeny_hap1  progeny_hap2
+Chr01       pat           mat
+Chr02       pat           mat
+Chr03       pat           mat
+Chr04       pat           mat
+Chr05       pat           mat
+Chr06       pat           mat
+Chr07       pat           mat
+Chr08       pat           mat
+Chr09       pat           mat
+Chr10       pat           mat
+Chr11       pat           mat
+Chr12       pat           mat
+Chr13       pat           mat
+Chr14       pat           mat
+Chr15       pat           mat
+Chr16       pat           mat
+Chr17       pat           mat
+Chr18       pat           mat
+Chr19       pat           mat
+```
 
 [Back to top](#link1)
