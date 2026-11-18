@@ -1,7 +1,7 @@
 <a id="link1"></a>
 # BioWorkflowSuite (BWS) : Bioinformatic workflow suite.
 
-<img src="logo.png" align="right" width="30%">
+<img src="logo.png" align="right" width="40%">
 
 - [BioWorkflowSuite (BWS) : Bioinformatic workflow suite.](#bioworkflowsuite-bws--bioinformatic-workflow-suite)
   - [Introduction](#introduction)
